@@ -544,17 +544,6 @@ class advanced_search extends rcube_plugin
     {
         $select = rcmail_action::folder_selector($p);
         $select->add($this->i18n_strings['allfolders'], 'all');
-
-        //     $select = rcmail_action::folder_selector([
-        //         // 'noselection'   => '---',
-        //         'realnames'     => true,
-        //         'maxlength'     => 30,
-        //         'folder_filter' => 'mail',
-        //         'folder_rights' => 'w',
-        //         'onchange'      => "if ($(this).val() == 'INBOX') $(this).val('')",
-        //         'class'         => 'custom-select',
-        // ]);
-
         return $select;
     }
 
