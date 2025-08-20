@@ -3,7 +3,7 @@
 ## Installation Instructions
 
 ### Composer
-In the root of your Roundcube root directory using a terminal, type `composer require texxasrulez/advanced_searh` and it will automatically install.
+In the root of your Roundcube root directory using a terminal, type `composer require texxasrulez/advanced_search` and it will automatically install.
 
 ### FTP
 Download latest release from Github and upload via FTP to /roundcube_root/plugins/advanced_search.  
