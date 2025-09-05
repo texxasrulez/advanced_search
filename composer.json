@@ -2,14 +2,18 @@
   "name": "texxasrulez/advanced_search",
   "type": "roundcube-plugin",
   "description": "Add Advanced Search Capabilities",
-  "keywords": ["search","mail","advanced"],
+  "keywords": [
+    "search",
+    "mail",
+    "advanced"
+  ],
   "homepage": "https://github.com/texxasrulez/advanced_search",
   "support": {
     "issues": "https://github.com/texxasrulez/advanced_search/issues",
     "source": "https://github.com/texxasrulez/advanced_search"
   },
   "license": "GPL-3.0",
-    "version": "3.5",
+  "version": "3.6",
   "authors": [
     {
       "name": "Gene Hawkins",
@@ -24,7 +28,7 @@
     }
   ],
   "require": {
-    "php": ">=5.2.1",
-    "roundcube/plugin-installer": ">=0.1.2"
+    "php": ">=7.4",
+    "roundcube/plugin-installer": ">=0.3.0"
   }
 }

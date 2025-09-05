@@ -97,21 +97,21 @@ class advanced_search extends rcube_plugin
             $search = rcube_utils::get_input_value('_search', rcube_utils::INPUT_POST);
         }
         $rsearch = 'advanced_search_active' == $search;
-        $uid = rcube_utils::get_input_value('_uid', rcube_utils::INPUT_GET);
-        $draft_uid = rcube_utils::get_input_value('_draft_uid', rcube_utils::INPUT_GET);
+        $uid = (string) rcube_utils::get_input_value('_uid', rcube_utils::INPUT_GET);
+        $draft_uid = (string) rcube_utils::get_input_value('_draft_uid', rcube_utils::INPUT_GET);
         $mbox = rcube_utils::get_input_value('_mbox', rcube_utils::INPUT_GET);
         $page = rcube_utils::get_input_value('_page', rcube_utils::INPUT_GET);
         $sort = rcube_utils::get_input_value('_sort', rcube_utils::INPUT_GET);
 
         if (!empty($uid)) {
-            $parts = explode('__MB__', $uid);
+            $parts = explode('__MB__', (string) $uid);
             if (2 == \count($parts)) {
                 $search = 'advanced_search_active';
             }
         }
 
         if (!empty($draft_uid)) {
-            $parts = explode('__MB__', $draft_uid);
+            $parts = explode('__MB__', (string) $draft_uid);
             if (2 == \count($parts)) {
                 $search = 'advanced_search_active';
             }
@@ -119,13 +119,13 @@ class advanced_search extends rcube_plugin
 
         if ('advanced_search_active' == $search) {
             if ('show' == $args['action'] && !empty($uid)) {
-                $parts = explode('__MB__', $uid);
+                $parts = explode('__MB__', (string) $uid);
                 $uid = $parts[0];
                 $this->rc->output->redirect(['_task' => 'mail', '_action' => $args['action'], '_mbox' => $mbox, '_uid' => $uid]);
             }
             if ('compose' == $args['action']) {
-                $draft_uid = rcube_utils::get_input_value('_draft_uid', rcube_utils::INPUT_GET);
-                $parts = explode('__MB__', $draft_uid);
+                $draft_uid = (string) rcube_utils::get_input_value('_draft_uid', rcube_utils::INPUT_GET);
+                $parts = explode('__MB__', (string) $draft_uid);
                 $draft_uid = $parts[0];
                 if (!empty($draft_uid)) {
                     $this->rc->output->redirect(['_task' => 'mail', '_action' => $args['action'], '_mbox' => $mbox, '_draft_uid' => $draft_uid]);
@@ -623,6 +623,10 @@ class advanced_search extends rcube_plugin
             $current_folder = rcube_utils::get_input_value('current_folder', rcube_utils::INPUT_GPC);
 
             $this->rc->output->set_env('search_request', 'advanced_search_active');
+            // Use native PHP session to maximize compatibility across Roundcube versions
+            if (isset($_SESSION)) {
+                $_SESSION['search_request'] = 'advanced_search_active';
+            }
             $this->rc->output->set_env('messagecount', $count);
             $this->rc->output->set_env('pagecount', ceil($count / $pagesize));
             $this->rc->output->set_env('exists', $this->rc->storage->count($current_folder, 'EXISTS'));
@@ -771,6 +775,9 @@ class advanced_search extends rcube_plugin
                     }
 
                     $cont = rcube::SQ($last_folder_name);
+                } elseif ('avmbox' == $col) {
+                    // Provide the mailbox value without touching header object properties
+                    $cont = rcube::SQ($mbox);
                 } else if (isset($header->$col)) {
                     $cont = rcube::SQ($header->{$col});
                 }
@@ -1037,7 +1044,8 @@ class advanced_search extends rcube_plugin
         foreach ($messages as $set_flag) {
             $set_flag->flags['skip_mbox_check'] = true;
             if (true === $showMboxColumn) {
-                $set_flag->avmbox = $mailbox;
+                // Avoid dynamic properties on rcube_message_header (PHP 8.2+)
+                // We will render 'avmbox' column directly in rcmail_js_message_list using $mbox
                 $avbox[] = 'avmbox';
                 $showAvmbox = true;
             }
