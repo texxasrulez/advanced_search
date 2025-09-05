@@ -13,7 +13,35 @@
 class advanced_search extends rcube_plugin
 {
 
+    
     /**
+     * Resolve URL to a plugin-owned skin image with sane fallbacks.
+     * Order: current skin -> elastic -> larry -> plugin/images
+     * Returns a plugin-relative URL via $this->url(...).
+     */
+    private function plugin_skin_image_url($file)
+    {
+        $rc   = $this->rc;
+        $skin = (string) $rc->config->get('skin');
+
+        $candidates = array(
+            'skins/' . $skin . '/images/' . $file,
+            'skins/elastic/images/' . $file,
+            'skins/larry/images/' . $file,
+            'images/' . $file,
+        );
+
+        foreach ($candidates as $rel) {
+            $base = rtrim(str_replace('\\', '/', $this->home), '/');
+            $fs   = $base . '/' . $rel;
+            if (file_exists($fs)) {
+                return $this->url($rel); // plugin-relative URL
+            }
+        }
+
+        return $this->url('images/' . $file);
+    }
+/**
      * Instance of rcmail.
      *
      * @var rcmail
@@ -68,7 +96,7 @@ class advanced_search extends rcube_plugin
         $this->include_script('advanced_search.js');
 
         if ('mail' == $this->rc->task) {
-            $file = 'skins/' . ($this->local_skin_path() . '/advanced_search.css');
+            $file = $this->local_skin_path() . '/advanced_search.css';
 
             if (file_exists($this->home . '/' . $file)) {
                 $this->include_stylesheet($file);
@@ -81,7 +109,7 @@ class advanced_search extends rcube_plugin
             $this->add_hook('preferences_list', [$this, 'preferences_list']);
             $this->add_hook('preferences_save', [$this, 'preferences_save']);
             $this->add_hook('preferences_sections_list', [$this, 'preferences_section']);
-            $file = 'skins/' . ($this->local_skin_path() .'/advanced_search.css');
+            $file = $this->local_skin_path() . '/advanced_search.css';
             if (file_exists($this->home . '/' . $file)) {
                 $this->include_stylesheet($file);
             }
@@ -961,9 +989,9 @@ class advanced_search extends rcube_plugin
                 $img2class = 'disabled';
             }
 
-            $img1 = html::img(['src' => ($this->local_skin_path() . '/images/show_mbox_row.jpg'), 'class' => $img1class]);
-            $img2 = html::img(['src' => ($this->local_skin_path() . '/images/show_mbox_col.jpg'), 'class' => $img2class]);
-            $img3 = html::img(['src' => ($this->local_skin_path() . '/images/' . $target_image)]);
+            $img1 = html::img(['src' => $this->plugin_skin_image_url('show_mbox_row.jpg'), 'class' => $img1class]);
+            $img2 = html::img(['src' => $this->plugin_skin_image_url('show_mbox_col.jpg'), 'class' => $img2class]);
+            $img3 = html::img(['src' => $this->plugin_skin_image_url($target_image)]);
 
             $check2 = html::tag('input', $arg2);
             $args['blocks']['label_display_options']['options'][0] = ['title' => '', 'content' => '<p class="avsearchpref"><span>' . $check1 . ' ' . $label1 . '</span> ' . $img1 . '</p>'];
