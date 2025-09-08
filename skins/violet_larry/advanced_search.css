@@ -1,7 +1,7 @@
 /* Advanced Search "Violet-Larry" */
 
 a.icon.advanced_search span.advanced_search {
-    background-image: url(images/icon-loupe.png) !important;
+    background-image: url(../../plugins/advanced_search/skins/violet_larry/images/icon-loupe.png) !important;
     background-position: 0 !important;
 }
 
@@ -21,7 +21,7 @@ a.button.advanced_search {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
     -o-box-shadow: none;
-    background: url(../../../../skins/violet-larry/images/buttons.png?v=abf1.36693) -100px 0 no-repeat transparent;
+    background: url(../../../../skins/violet_larry/images/buttons.png?v=abf1.36693) -100px 0 no-repeat transparent;
     border: 0;
     border-radius: 0;
     background-position: center -970px;
