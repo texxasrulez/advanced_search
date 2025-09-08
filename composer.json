@@ -2,11 +2,7 @@
   "name": "texxasrulez/advanced_search",
   "type": "roundcube-plugin",
   "description": "Add Advanced Search Capabilities",
-  "keywords": [
-    "search",
-    "mail",
-    "advanced"
-  ],
+  "keywords": ["search", "mail", "advanced"],
   "homepage": "https://github.com/texxasrulez/advanced_search",
   "support": {
     "issues": "https://github.com/texxasrulez/advanced_search/issues",
