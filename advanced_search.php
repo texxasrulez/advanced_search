@@ -41,7 +41,7 @@ class advanced_search extends rcube_plugin
 
         return $this->url('images/' . $file);
     }
-/**
+	/**
      * Instance of rcmail.
      *
      * @var rcmail
