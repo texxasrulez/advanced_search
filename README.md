@@ -1,12 +1,13 @@
 # Advanced Search Plugin for Roundcube
 
-[![Packagist](https://img.shields.io/packagist/dt/texxasrulez/advanced_search?style=plastic)](https://packagist.org/packages/texxasrulez/advanced_search)
-[![Packagist Version](https://img.shields.io/packagist/v/texxasrulez/advanced_search?style=plastic&logo=packagist&logoColor=white)](https://packagist.org/packages/texxasrulez/advanced_search)
-[![Project license](https://img.shields.io/github/license/texxasrulez/advanced_search?style=plastic)](https://github.com/texxasrulez/advanced_search/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/texxasrulez/advanced_search?style=plastic&logo=github)](https://github.com/texxasrulez/advanced_search/stargazers)
-[![issues](https://img.shields.io/github/issues/texxasrulez/advanced_search?style=plastic)](https://github.com/texxasrulez/advanced_search/issues)
-[![Donate to this project using Paypal](https://img.shields.io/badge/paypal-money_please-blue.svg?style=plastic&logo=paypal)](https://www.paypal.me/texxasrulez)
-
+[![Packagist](https://img.shields.io/packagist/dt/texxasrulez/advanced_search?style=plastic&labelColor=blue&color=gold)](https://packagist.org/packages/texxasrulez/advanced_search)
+[![Packagist Version](https://img.shields.io/packagist/v/texxasrulez/advanced_search?style=plastic&logo=packagist&logoColor=white&labelColor=blue&color=limegreen)](https://packagist.org/packages/texxasrulez/advanced_search)
+[![Project license](https://img.shields.io/github/license/texxasrulez/advanced_search?style=plastic&labelColor=blue&color=coral)](https://github.com/texxasrulez/advanced_search/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/texxasrulez/advanced_search?style=plastic&logo=github&labelColor=blue&color=deepskyblue)](https://github.com/texxasrulez/advanced_search/stargazers)
+[![issues](https://img.shields.io/github/issues/texxasrulez/advanced_search?style=plastic&labelColor=blue&color=aqua)](https://github.com/texxasrulez/advanced_search/issues)
+[![GitHub contributors](https://img.shields.io/github/contributors/texxasrulez/advanced_search?style=plastic&logo=github&logoColor=white&labelColor=blue&color=orchid)](https://github.com/texxasrulez/advanced_search/graphs/contributors)
+[![GitHub forks](https://img.shields.io/github/forks/texxasrulez/advanced_search?style=plastic&logo=github&logoColor=white&labelColor=blue&color=darkorange)](https://github.com/texxasrulez/advanced_search/forks)
+[![Donate to this project using Paypal](https://img.shields.io/badge/paypal-money_please-blue.svg?style=plastic&labelColor=blue&color=forestgreen&logo=paypal)](https://www.paypal.me/texxasrulez)
 
 ## Installation Instructions
 
