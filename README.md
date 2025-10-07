@@ -4,7 +4,7 @@
 [![Packagist Version](https://img.shields.io/packagist/v/texxasrulez/advanced_search?style=plastic&logo=packagist&logoColor=white)](https://packagist.org/packages/texxasrulez/advanced_search)
 [![Project license](https://img.shields.io/github/license/texxasrulez/advanced_search?style=plastic)](https://github.com/texxasrulez/advanced_search/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/texxasrulez/advanced_search?style=plastic&logo=github)](https://github.com/texxasrulez/advanced_search/stargazers)
-[![issues](https://img.shields.io/github/issues/texxasrulez/advanced_search)](https://github.com/texxasrulez/advanced_search/issues)
+[![issues](https://img.shields.io/github/issues/texxasrulez/advanced_search?style=plastic)](https://github.com/texxasrulez/advanced_search/issues)
 [![Donate to this project using Paypal](https://img.shields.io/badge/paypal-donate-blue.svg?style=plastic&logo=paypal)](https://www.paypal.me/texxasrulez)
 
 
