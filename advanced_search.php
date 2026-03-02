@@ -67,6 +67,22 @@ class advanced_search extends rcube_plugin
     private $coltypesSet = false;
 
     /**
+     * Normalize a saved-search name to a safe, bounded plain-text key.
+     *
+     * @param mixed $search_name
+     *
+     * @return string
+     */
+    private function normalize_search_name($search_name)
+    {
+        $name = trim((string) $search_name);
+        $name = preg_replace('/[\x00-\x1F\x7F]/', '', $name);
+        $name = rcube_utils::clean_identifier($name);
+
+        return substr($name, 0, 128);
+    }
+
+    /**
      * Initialisation of the plugin.
      *
      * @return null
@@ -323,6 +339,11 @@ class advanced_search extends rcube_plugin
                 // Try to use PHP5.2+ DateTime but fallback to ugly old method
                 if (class_exists('DateTime')) {
                     $date = DateTime::createFromFormat($date_format, $search_part['filter-val']);
+                    if (!$date) {
+                        $this->rc->output->show_message($this->gettext('internalerror'), 'error');
+
+                        return 0;
+                    }
                     $command_str .= ' ' . $this->quote($date->format('d-M-Y'));
                 } else {
                     $date_format = preg_replace('/(\w)/', '%$1', $date_format);
@@ -1005,7 +1026,7 @@ class advanced_search extends rcube_plugin
     private function perform_search($search_string, $folders, $page = 1)
     {
         // Search all folders and build a final set
-        if ('all' == $folders[0] || empty($folders)) {
+        if (empty($folders) || 'all' == $folders[0]) {
             $folders_search = $this->rc->imap->list_folders_subscribed();
         } else {
             $folders_search = $folders;
@@ -1086,7 +1107,7 @@ class advanced_search extends rcube_plugin
 
     public function save_search()
     {
-        $search_name = rcube_utils::get_input_value('search_name', rcube_utils::INPUT_GPC);
+        $search_name = $this->normalize_search_name(rcube_utils::get_input_value('search_name', rcube_utils::INPUT_GPC));
         if ($search_name) {
             $search = [];
             $search['search'] = rcube_utils::get_input_value('search', rcube_utils::INPUT_GPC);
@@ -1099,24 +1120,24 @@ class advanced_search extends rcube_plugin
             }
             $prefs['advanced_search'][$search_name] = $search;
             $this->rc->user->save_prefs(['advanced_search' => $prefs['advanced_search']]);
-            $this->rc->output->show_message('"<i>' . $search_name . '</i>" ' . $this->i18n_strings['has_been_saved'], 'confirmation');
+            $this->rc->output->show_message('"' . rcube::Q($search_name) . '" ' . $this->i18n_strings['has_been_saved'], 'confirmation');
         }
     }
 
     public function delete_search()
     {
-        $search_name = rcube_utils::get_input_value('search_name', rcube_utils::INPUT_GPC);
+        $search_name = $this->normalize_search_name(rcube_utils::get_input_value('search_name', rcube_utils::INPUT_GPC));
         if ($search_name) {
             $prefs = (array) $this->rc->user->get_prefs();
             unset($prefs['advanced_search'][$search_name]);
             $this->rc->user->save_prefs(['advanced_search' => $prefs['advanced_search']]);
-            $this->rc->output->show_message('"<i>' . $search_name . '</i>" ' . $this->i18n_strings['has_been_deleted'], 'notice');
+            $this->rc->output->show_message('"' . rcube::Q($search_name) . '" ' . $this->i18n_strings['has_been_deleted'], 'notice');
         }
     }
 
     public function get_saved_search()
     {
-        $search_name = rcube_utils::get_input_value('search_name', rcube_utils::INPUT_GPC);
+        $search_name = $this->normalize_search_name(rcube_utils::get_input_value('search_name', rcube_utils::INPUT_GPC));
         $prefs = (array) $this->rc->user->get_prefs();
         if (!isset($prefs['advanced_search'])) {
             $prefs['advanced_search'] = [];
