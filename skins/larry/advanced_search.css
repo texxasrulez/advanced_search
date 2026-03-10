@@ -1,5 +1,7 @@
+/* Advanced Search "Larry" */
+
 a.icon.advanced_search span.advanced_search {
-    background-image: url(../../plugins/advanced_search/skins/larry/images/icon-loupe.png) !important;
+    background: url(images/icon-loupe.png) no-repeat transparent !important;
     background-position: 0 !important;
 }
 
