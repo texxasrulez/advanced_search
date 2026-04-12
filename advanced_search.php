@@ -14,6 +14,20 @@ class advanced_search extends rcube_plugin
 {
 
     
+    const PLUGIN_VERSION = '3.8.0';
+    const PLUGIN_INFO = array(
+        'name' => 'advanced_search',
+        'vendor' => 'Gene Hawkins',
+        'version' => self::PLUGIN_VERSION,
+        'license' => 'GPL-3.0',
+        'uri' => 'https://github.com/texxasrulez/advanced_search',
+    );
+
+    public static function info(): array
+    {
+        return self::PLUGIN_INFO;
+    }
+
     /**
      * Resolve URL to a plugin-owned skin image with sane fallbacks.
      * Order: current skin -> elastic -> larry -> plugin/images

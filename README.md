@@ -63,3 +63,15 @@ Thanks and enjoy!
 * Moules Chris
 * [Global Media Systems](http://www.gms.lu)
 * Gene Hawkins
+
+## Versioning
+- `advanced_search` now keeps its canonical version in `advanced_search::PLUGIN_VERSION` inside `advanced_search.php`.
+- `advanced_search::info()` exposes the plugin metadata array used for self-identification.
+- Development builds should use a `+dev` suffix such as `2.1.7+dev`.
+- Release builds should use a clean tagged version such as `2.1.7`.
+
+For a release bump:
+1. Update `advanced_search::PLUGIN_VERSION` in `advanced_search.php` or run `sh scripts/bump-version.sh 2.1.7`.
+2. Update `CHANGELOG.md`.
+3. Create the matching release tag after verification.
+
