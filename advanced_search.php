@@ -14,7 +14,7 @@ class advanced_search extends rcube_plugin
 {
 
     
-    const PLUGIN_VERSION = '3.8.0';
+    const PLUGIN_VERSION = '3.7.1';
     const PLUGIN_INFO = array(
         'name' => 'advanced_search',
         'vendor' => 'Gene Hawkins',
